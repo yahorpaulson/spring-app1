@@ -9,7 +9,12 @@
 
     <!--create a new bean(object)-->
     <bean id="musicBean"
-          class="at.springcourse.KpopMusic">
+          class="at.springcourse.ClassicalMusic">
+    </bean>
+
+    <bean id = "musicPlayer"
+        class ="at.springcourse.MusicPlayer">
+        <constructor-arg ref="musicBean"/>
     </bean>
 
 </beans>
