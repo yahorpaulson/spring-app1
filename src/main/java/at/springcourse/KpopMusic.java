@@ -8,6 +8,6 @@ public class KpopMusic implements Music{
 
     @Override
     public String getSong() {
-        return "How you like that";
+        return "LALISA";
     }
 }
