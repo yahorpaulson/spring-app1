@@ -1,20 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans  xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:context="http://www.springframework.org/schema/context"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd">
+        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+
+    <context:property-placeholder location="classpath:musicPlayer.properties"/> <!--takes values from musicPlayer.properties-->
 
     <!--create a new bean(object)-->
-    <bean id="musicBean"
+    <bean id="musicBeanKPop"
+          class="at.springcourse.KpopMusic">
+    </bean>
+    <bean id="musicBeanRock"
+          class="at.springcourse.RockMusic">
+    </bean>
+    <bean id="musicBeanClassic"
           class="at.springcourse.ClassicalMusic">
     </bean>
 
     <bean id = "musicPlayer"
         class ="at.springcourse.MusicPlayer">
-        <constructor-arg ref="musicBean"/>
+        <!--<constructor-arg ref="musicBean"-->
+
+
+        <!--<property name="music" ref = "musicBean"/> &lt;!&ndash; Spring reads the name of setter method, where set is already
+        known so then it changes "setMusic" to "music". So we write "music" in property name&ndash;&gt;
+
+        <property name = "name" value = "${musicPlayer.name}"/>
+        <property name = "volume" value = "${musicPlayer.volume}" />-->
+
+        <property name = "musicList">
+            <list>
+                <ref bean = "musicBeanKPop"/>
+                <ref bean = "musicBeanRock"/>
+                <ref bean = "musicBeanClassic"/>
+            </list>
+        </property>
+
     </bean>
 
 </beans>
