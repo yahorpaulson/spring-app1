@@ -12,7 +12,14 @@
     <context:property-placeholder location="classpath:musicPlayer.properties"/> <!--takes values from musicPlayer.properties-->
 
     <!--create a new bean(object)-->
-    <bean id="musicBeanKPop"
+    <bean id="musicBean"
+          class="at.springcourse.KpopMusic">
+    </bean>
+
+
+
+
+    <!--<bean id="musicBeanKPop"
           class="at.springcourse.KpopMusic">
     </bean>
     <bean id="musicBeanRock"
@@ -20,26 +27,28 @@
     </bean>
     <bean id="musicBeanClassic"
           class="at.springcourse.ClassicalMusic">
-    </bean>
+    </bean>-->
 
     <bean id = "musicPlayer"
-        class ="at.springcourse.MusicPlayer">
+        class ="at.springcourse.MusicPlayer"
+        scope="prototype">
+
         <!--<constructor-arg ref="musicBean"-->
 
 
-        <!--<property name="music" ref = "musicBean"/> &lt;!&ndash; Spring reads the name of setter method, where set is already
-        known so then it changes "setMusic" to "music". So we write "music" in property name&ndash;&gt;
+        <property name="music" ref = "musicBean"/> <!-- Spring reads the name of setter method, where set is already
+        known so then it changes "setMusic" to "music". So we write "music" in property name-->
 
         <property name = "name" value = "${musicPlayer.name}"/>
-        <property name = "volume" value = "${musicPlayer.volume}" />-->
+        <property name = "volume" value = "${musicPlayer.volume}" />
 
-        <property name = "musicList">
+        <!--<property name = "musicList">
             <list>
                 <ref bean = "musicBeanKPop"/>
                 <ref bean = "musicBeanRock"/>
                 <ref bean = "musicBeanClassic"/>
             </list>
-        </property>
+        </property>-->
 
     </bean>
 
